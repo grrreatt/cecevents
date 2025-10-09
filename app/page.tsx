@@ -13,7 +13,7 @@ import Footer from '@/components/Footer'
 import ChatBot from '@/components/ChatBot'
 import PortfolioModal from '@/components/PortfolioModal'
 import ScrollProgress from '@/components/ScrollProgress'
-import portfolioData from '@/lib/portfolio-data.json'
+import { portfolioData } from '@/lib/portfolio-data'
 import { cn } from '@/lib/utils'
 
 // Motion Counter Component
