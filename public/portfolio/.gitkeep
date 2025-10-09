@@ -1,0 +1,9 @@
+# Place your portfolio images here
+# Supported formats: .jpg, .jpeg, .png, .webp
+# 
+# Example:
+# - portfolio-1.jpg
+# - portfolio-2.jpg
+# - portfolio-3.jpg
+#
+# Update the portfolioImages array in components/Portfolio.tsx to match your filenames
