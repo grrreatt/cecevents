@@ -1,13 +1,5 @@
 {
-  "buildCommand": "npm run build",
-  "framework": "nextjs",
-  "installCommand": "npm install",
-  "devCommand": "npm run dev",
-  "outputDirectory": ".next",
   "regions": ["bom1"],
-  "env": {
-    "NODE_ENV": "production"
-  },
   "headers": [
     {
       "source": "/(.*)",
@@ -25,12 +17,6 @@
           "value": "1; mode=block"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/images/:path*",
-      "destination": "/images/:path*"
     }
   ]
 }
