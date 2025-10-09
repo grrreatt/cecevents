@@ -5,8 +5,8 @@
     "location": "New Delhi",
     "attendees": "3,500+",
     "desc": "Seamless registration for India's largest medical conference with real-time badge printing and QR check-in system.",
-    "image": "/images/IMG-20251007-WA0018.jpg",
-    "category": "Medical"
+    "category": "Medical",
+    "icon": "Stethoscope"
   },
   {
     "id": 2,
@@ -14,8 +14,8 @@
     "location": "Mumbai",
     "attendees": "2,800+",
     "desc": "End-to-end event management including venue setup, AV production, and delegate coordination.",
-    "image": "/images/IMG-20251007-WA0019.jpg",
-    "category": "Corporate"
+    "category": "Corporate",
+    "icon": "Building2"
   },
   {
     "id": 3,
@@ -23,8 +23,8 @@
     "location": "Mumbai",
     "attendees": "5,000+",
     "desc": "Complete on-site registration management for multi-day technical festival with live analytics dashboard.",
-    "image": "/images/IMG-20251007-WA0020.jpg",
-    "category": "Academic"
+    "category": "Academic",
+    "icon": "GraduationCap"
   },
   {
     "id": 4,
@@ -32,8 +32,8 @@
     "location": "Bangalore",
     "attendees": "2,200+",
     "desc": "Hybrid event management with virtual platform integration and physical registration kiosks.",
-    "image": "/images/IMG-20251007-WA0021.jpg",
-    "category": "Medical"
+    "category": "Medical",
+    "icon": "Heart"
   },
   {
     "id": 5,
@@ -41,8 +41,8 @@
     "location": "Hyderabad",
     "attendees": "1,500+",
     "desc": "Premium event production with branded registration experience and VIP guest management.",
-    "image": "/images/IMG-20251007-WA0022.jpg",
-    "category": "Corporate"
+    "category": "Corporate",
+    "icon": "Rocket"
   },
   {
     "id": 6,
@@ -50,8 +50,8 @@
     "location": "Ahmedabad",
     "attendees": "4,200+",
     "desc": "Exhibition management with exhibitor registration, booth allocation, and visitor tracking system.",
-    "image": "/images/IMG-20251007-WA0023.jpg",
-    "category": "Exhibition"
+    "category": "Exhibition",
+    "icon": "Store"
   }
 ]
 

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { 
   ArrowRight, CheckCircle2, Users, Building2, Sparkles, 
   TrendingUp, Shield, Zap, Clock, Award, Star,
-  ChevronDown, Play
+  ChevronDown, Play, Stethoscope, GraduationCap, Heart, Rocket, Store
 } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -366,43 +366,54 @@ function PortfolioSection({ openPortfolio }: { openPortfolio: (project: any) => 
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioData.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              onClick={() => openPortfolio(project)}
-              className="group cursor-pointer perspective-1000"
-            >
-              <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all preserve-3d">
-                <div className="aspect-video relative overflow-hidden">
-                  <motion.img
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gold/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">View Details</span>
+          {portfolioData.map((project, i) => {
+            const IconComponent = {
+              Stethoscope,
+              Building2,
+              GraduationCap,
+              Heart,
+              Rocket,
+              Store
+            }[project.icon as string] || Building2
+
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                onClick={() => openPortfolio(project)}
+                className="group cursor-pointer perspective-1000"
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all preserve-3d bg-gradient-to-br from-primary to-accent h-full">
+                  <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-gold/10 to-gold/5 flex items-center justify-center">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.6 }}
+                      className="w-32 h-32 rounded-full bg-gold/20 backdrop-blur-sm flex items-center justify-center"
+                    >
+                      <IconComponent className="w-16 h-16 text-gold" />
+                    </motion.div>
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gold/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span className="text-primary font-bold text-lg">View Details</span>
+                    </div>
+                  </div>
+
+                  <div className="p-6 text-white">
+                    <span className="px-3 py-1 bg-gold/90 text-primary text-xs font-semibold rounded-full mb-3 inline-block">
+                      {project.category}
+                    </span>
+                    <h3 className="font-bold text-lg mb-2">{project.title}</h3>
+                    <p className="text-sm text-gray-300 mb-3">{project.desc}</p>
+                    <p className="text-sm text-gold">{project.location} • {project.attendees} delegates</p>
                   </div>
                 </div>
-
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <span className="px-3 py-1 bg-gold/90 text-primary text-xs font-semibold rounded-full mb-3 inline-block">
-                    {project.category}
-                  </span>
-                  <h3 className="font-bold text-lg mb-2 line-clamp-2">{project.title}</h3>
-                  <p className="text-sm text-gray-300">{project.location} • {project.attendees} delegates</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

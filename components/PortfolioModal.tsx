@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, MapPin, Users } from 'lucide-react'
+import { X, MapPin, Users, Stethoscope, Building2, GraduationCap, Heart, Rocket, Store } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface PortfolioModalProps {
@@ -12,7 +12,7 @@ interface PortfolioModalProps {
     location: string
     attendees: string
     desc: string
-    image: string
+    icon: string
     category: string
   } | null
 }
@@ -52,16 +52,30 @@ export default function PortfolioModal({ isOpen, onClose, project }: PortfolioMo
                 <X className="w-5 h-5" />
               </motion.button>
 
-              {/* Image */}
-              <div className="relative h-80 overflow-hidden">
-                <motion.img
-                  initial={{ scale: 1.2 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.8 }}
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
+              {/* Icon Header */}
+              <div className="relative h-80 overflow-hidden bg-gradient-to-br from-primary via-accent to-primary flex items-center justify-center">
+                {(() => {
+                  const IconComponent = {
+                    Stethoscope,
+                    Building2,
+                    GraduationCap,
+                    Heart,
+                    Rocket,
+                    Store
+                  }[project.icon] || Building2
+
+                  return (
+                    <motion.div
+                      initial={{ scale: 0.8, rotate: -10 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ duration: 0.8, type: "spring" }}
+                      className="w-48 h-48 rounded-full bg-gold/20 backdrop-blur-sm flex items-center justify-center"
+                    >
+                      <IconComponent className="w-32 h-32 text-gold" />
+                    </motion.div>
+                  )
+                })()}
+                
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 
                 {/* Category Badge */}
