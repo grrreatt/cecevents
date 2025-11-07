@@ -116,26 +116,28 @@ export default function Services() {
                 >
                   {/* Animated background glow */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-0"
                     initial={false}
                   />
                   
                   <div className="relative z-10">
-                    <motion.div 
-                      className="text-6xl mb-4"
-                      animate={{ 
-                        rotate: [0, -10, 10, 0],
-                        scale: [1, 1.1, 1]
-                      }}
-                      transition={{ 
-                        duration: 4, 
-                        repeat: Infinity,
-                        delay: index * 0.3
-                      }}
-                    >
-                      {service.icon}
-                    </motion.div>
-                    <h3 className="text-2xl font-bold text-primary mb-4 group-hover:text-gold transition-colors">
+                    <div className="mx-auto mb-6 w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gold/10 flex items-center justify-center border border-gold/20 shadow-sm">
+                      <motion.div
+                        className="text-4xl md:text-5xl"
+                        animate={{
+                          y: [0, -6, 0],
+                          rotate: [0, 2, -2, 0]
+                        }}
+                        transition={{
+                          duration: 5,
+                          repeat: Infinity,
+                          delay: index * 0.2
+                        }}
+                      >
+                        {service.icon}
+                      </motion.div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-primary mb-3 group-hover:text-gold transition-colors">
                       {service.title}
                     </h3>
                     <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>

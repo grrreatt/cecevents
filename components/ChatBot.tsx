@@ -50,7 +50,7 @@ export default function ChatBot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className={cn(
-          "fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full",
+          "fixed bottom-6 right-6 z-[9999] w-16 h-16 rounded-full",
           "bg-gradient-to-br from-gold to-gold-dark text-primary",
           "shadow-2xl shadow-gold/30 flex items-center justify-center",
           "glow-gold-strong",
@@ -68,7 +68,7 @@ export default function ChatBot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-6 right-6 z-50 w-96 h-[500px] glass-effect rounded-3xl shadow-2xl overflow-hidden"
+            className="fixed bottom-6 right-6 z-[9999] w-96 h-[500px] glass-effect rounded-3xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-gold to-gold-dark p-4 flex items-center justify-between">

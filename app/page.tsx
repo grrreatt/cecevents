@@ -69,14 +69,14 @@ export default function HomePage() {
 
       <main className="min-h-screen bg-bgLight overflow-hidden">
         {/* ====== CINEMATIC HERO SECTION ====== */}
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative h-screen flex items-center justify-center overflow-hidden pt-28 md:pt-36">
           {/* Animated Background */}
           <motion.div 
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 pointer-events-none"
             style={{ y: heroY }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary" />
-            <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary pointer-events-none" />
+            <div className="absolute inset-0 opacity-20 pointer-events-none">
               {[...Array(20)].map((_, i) => (
                 <motion.div
                   key={i}
@@ -195,22 +195,7 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
 
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="flex flex-col items-center gap-2 text-white/60 cursor-pointer"
-            >
-              <span className="text-xs font-semibold">Scroll to explore</span>
-              <ChevronDown className="w-6 h-6" />
-            </motion.div>
-          </motion.div>
+          {/* Scroll Indicator removed per request */}
         </section>
 
         {/* ====== SIGNATURE SERVICES (ENHANCED - KEEPING EXISTING) ====== */}
@@ -450,7 +435,7 @@ function FeatureHighlights() {
 
   return (
     <section ref={ref} className="py-32 px-6 bg-primary text-white relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
         {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
