@@ -38,6 +38,26 @@ export default function TeamSection() {
     </div>
   )
 
+  const emptyFallback = (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[1,2,3,4].map((i) => (
+        <div key={i} className="group bg-white rounded-2xl border border-gold/20 hover:border-gold/40 transition-all overflow-hidden shadow-sm">
+          <div className="aspect-square bg-gradient-to-br from-gold/5 to-gold-light/10 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gold/20 flex items-center justify-center text-gold text-2xl font-bold">{`T${i}`}</div>
+          </div>
+          <div className="p-5 text-center">
+            <div className="text-xl font-bold text-primary">Your Name</div>
+            <div className="text-sm text-gray-500 mb-3">Role / Designation</div>
+            <div className="flex items-center justify-center gap-3 text-sm text-gray-400">
+              <span>LinkedIn</span>
+              <span>Instagram</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+
   return (
     <section className="py-32 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -48,9 +68,9 @@ export default function TeamSection() {
 
         {loading ? (
           placeholder
-        ) : (
+        ) : (team && team.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {(team || []).map((m) => (
+            {team.map((m) => (
               <motion.div
                 key={m._id}
                 initial={{ opacity: 0, y: 20 }}
@@ -80,7 +100,9 @@ export default function TeamSection() {
               </motion.div>
             ))}
           </div>
-        )}
+        ) : (
+          emptyFallback
+        ))}
       </div>
     </section>
   )
