@@ -5,12 +5,21 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import PortfolioClient from './PortfolioClient'
 
-async function getPortfolioItems() {
+type PortfolioItem = {
+  _id?: string
+  title: string
+  location?: string
+  attendees?: string
+  coverImage?: any
+  avatar?: string
+}
+
+async function getPortfolioItems(): Promise<PortfolioItem[]> {
   try {
-    const items = await client.fetch(portfolioItemsQuery)
-    return items
+    const items = await client.fetch<PortfolioItem[]>(portfolioItemsQuery)
+    return items || []
   } catch {
-    return null
+    return []
   }
 }
 
@@ -74,8 +83,8 @@ const fallbackItems = [
 
 export default async function Portfolio() {
   const sanityItems = await getPortfolioItems()
-  const items = sanityItems && sanityItems.length > 0
-    ? sanityItems.map(item => ({
+  const items = sanityItems.length > 0
+    ? sanityItems.map((item: PortfolioItem) => ({
         ...item,
         avatar: item.coverImage ? urlFor(item.coverImage).width(400).height(300).url() : undefined
       }))
