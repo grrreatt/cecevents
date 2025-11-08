@@ -35,3 +35,27 @@ export const siteSettingsQuery = `
     socialLinks
   }
 `
+
+export const teamMembersQuery = `
+  *[_type == "teamMember"] | order(order asc) {
+    _id,
+    name,
+    role,
+    photo,
+    socials,
+    order
+  }
+`
+
+export const portfolioLimitedQuery = (limit: number) => `
+  *[_type == "portfolioItem"] | order(order asc)[0...${limit}] {
+    _id,
+    title,
+    category,
+    location,
+    attendees,
+    description,
+    coverImage,
+    order
+  }
+`

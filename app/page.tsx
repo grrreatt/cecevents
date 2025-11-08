@@ -15,6 +15,8 @@ import PortfolioModal from '@/components/PortfolioModal'
 import ScrollProgress from '@/components/ScrollProgress'
 import { portfolioData } from '@/lib/portfolio-data'
 import { cn } from '@/lib/utils'
+import TeamSection from '@/components/TeamSection'
+import HomePortfolioPreview from '@/components/HomePortfolioPreview'
 
 // Motion Counter Component
 function MotionCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -201,7 +203,10 @@ export default function HomePage() {
         {/* ====== SIGNATURE SERVICES (ENHANCED - KEEPING EXISTING) ====== */}
         <SignatureServicesSection />
 
-        {/* ====== PORTFOLIO SECTION ====== */}
+        {/* ====== FEATURED PORTFOLIO FROM CMS ====== */}
+        <HomePortfolioPreview />
+
+        {/* ====== PORTFOLIO SECTION (EXISTING INTERACTIVE) ====== */}
         <PortfolioSection openPortfolio={openPortfolio} />
 
         {/* ====== FEATURE HIGHLIGHTS ====== */}
@@ -209,6 +214,9 @@ export default function HomePage() {
 
         {/* ====== ABOUT / WHY CHOOSE US ====== */}
         <AboutSection />
+
+        {/* ====== TEAM FROM CMS ====== */}
+        <TeamSection />
 
         {/* ====== CONTACT FORM ====== */}
         <ContactSection />
