@@ -71,14 +71,20 @@ export default function Navbar() {
               whileHover={{ scale: 1.1, rotate: 10 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400 }}
-              className="relative w-10 h-10 bg-gradient-to-br from-gold to-gold-dark rounded-xl flex items-center justify-center shadow-lg shadow-gold/30 group-hover:shadow-gold/50 overflow-hidden"
+              className={
+                siteSettings?.logoUrl
+                  ? "relative w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden"
+                  : "relative w-10 h-10 bg-gradient-to-br from-gold to-gold-dark rounded-xl flex items-center justify-center shadow-lg shadow-gold/30 group-hover:shadow-gold/50 overflow-hidden"
+              }
             >
               {siteSettings?.logoUrl ? (
-                <img src={siteSettings.logoUrl} alt={companyName} className="w-full h-full object-contain p-1" />
+                <img src={siteSettings.logoUrl} alt={companyName} className="w-full h-full object-contain" />
               ) : (
-                <span className="text-white font-bold text-xl">C</span>
+                <>
+                  <span className="text-white font-bold text-xl">C</span>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-light to-gold opacity-0 group-hover:opacity-100 rounded-xl transition-opacity" />
+                </>
               )}
-              <div className="absolute inset-0 bg-gradient-to-br from-gold-light to-gold opacity-0 group-hover:opacity-100 rounded-xl transition-opacity" />
             </motion.div>
             <motion.span 
               initial={{ opacity: 0, x: -10 }}
