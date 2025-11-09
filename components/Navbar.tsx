@@ -26,8 +26,22 @@ export default function Navbar() {
     })
   }, [scrollY])
 
-  // ✏️ EDIT THIS CONTENT
-  const companyName = "cecevents"
+  const [siteSettings, setSiteSettings] = useState<{ siteTitle?: string; logoUrl?: string | null } | null>(null)
+  useEffect(() => {
+    let mounted = true
+    const run = async () => {
+      try {
+        const res = await fetch('/api/site-settings', { next: { revalidate: 60 } })
+        const json = await res.json()
+        if (mounted) setSiteSettings(json?.data || null)
+      } catch {
+        if (mounted) setSiteSettings(null)
+      }
+    }
+    run()
+    return () => { mounted = false }
+  }, [])
+  const companyName = siteSettings?.siteTitle || "cecevents"
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
@@ -57,9 +71,13 @@ export default function Navbar() {
               whileHover={{ scale: 1.1, rotate: 10 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400 }}
-              className="relative w-10 h-10 bg-gradient-to-br from-gold to-gold-dark rounded-xl flex items-center justify-center shadow-lg shadow-gold/30 group-hover:shadow-gold/50"
+              className="relative w-10 h-10 bg-gradient-to-br from-gold to-gold-dark rounded-xl flex items-center justify-center shadow-lg shadow-gold/30 group-hover:shadow-gold/50 overflow-hidden"
             >
-              <span className="text-white font-bold text-xl">C</span>
+              {siteSettings?.logoUrl ? (
+                <img src={siteSettings.logoUrl} alt={companyName} className="w-full h-full object-contain p-1" />
+              ) : (
+                <span className="text-white font-bold text-xl">C</span>
+              )}
               <div className="absolute inset-0 bg-gradient-to-br from-gold-light to-gold opacity-0 group-hover:opacity-100 rounded-xl transition-opacity" />
             </motion.div>
             <motion.span 
