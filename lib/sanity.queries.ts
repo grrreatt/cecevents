@@ -13,6 +13,16 @@ export const portfolioItemsQuery = `
   }
 `
 
+export const galleryImagesQuery = `
+  *[_type == "galleryImage"] | order(order asc) {
+    _id,
+    title,
+    category,
+    image,
+    order
+  }
+`
+
 export const servicesQuery = `
   *[_type == "service"] | order(order asc) {
     _id,
