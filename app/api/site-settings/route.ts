@@ -11,7 +11,7 @@ export async function GET() {
     const mapped = data
       ? {
           ...data,
-          logoUrl: data.logo ? urlFor(data.logo).width(200).height(200).fit('contain').url() : null,
+          logoUrl: data.logo ? urlFor(data.logo).width(200).height(200).fit('max').url() : null,
         }
       : null
     return NextResponse.json({ ok: true, data: mapped })
