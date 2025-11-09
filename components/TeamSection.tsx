@@ -33,7 +33,7 @@ export default function TeamSection() {
   const placeholder = (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       {[...Array(4)].map((_, i) => (
-        <div key={i} className="rounded-2xl p-6 bg-white border border-gold/20 h-56 animate-pulse" />
+        <div key={i} className="rounded-2xl p-6 bg-white border border-gray-200 h-56 animate-pulse" />
       ))}
     </div>
   )
@@ -41,9 +41,9 @@ export default function TeamSection() {
   const emptyFallback = (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       {[1,2,3,4].map((i) => (
-        <div key={i} className="group bg-white rounded-2xl border border-gold/20 hover:border-gold/40 transition-all overflow-hidden shadow-sm">
-          <div className="aspect-square bg-gradient-to-br from-gold/5 to-gold-light/10 flex items-center justify-center">
-            <div className="w-24 h-24 rounded-full bg-gold/20 flex items-center justify-center text-gold text-2xl font-bold">{`T${i}`}</div>
+        <div key={i} className="group bg-white rounded-2xl border border-gray-200 hover:border-gray-300 transition-all overflow-hidden shadow-sm">
+          <div className="aspect-square bg-white flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-2xl font-bold">{`T${i}`}</div>
           </div>
           <div className="p-5 text-center">
             <div className="text-xl font-bold text-primary">Your Name</div>
@@ -77,13 +77,13 @@ export default function TeamSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="group bg-white rounded-2xl border border-gold/20 hover:border-gold/40 transition-all overflow-hidden shadow-sm hover:shadow-lg"
+                className="group bg-white rounded-2xl border border-gray-200 hover:border-gray-300 transition-all overflow-hidden shadow-sm hover:shadow-lg"
               >
-                <div className="aspect-square bg-gradient-to-br from-gold/10 to-gold-light/10 flex items-center justify-center overflow-hidden">
+                <div className="aspect-square bg-white flex items-center justify-center overflow-hidden">
                   {m.photoUrl ? (
-                    <img src={m.photoUrl} alt={m.name} className="w-full h-full object-cover" />
+                    <img src={m.photoUrl} alt={m.name} className="w-28 h-28 rounded-full object-cover" />
                   ) : (
-                    <div className="text-5xl text-gold font-bold">{m.name?.[0] || 'C'}</div>
+                    <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-4xl font-bold">{m.name?.[0] || 'C'}</div>
                   )}
                 </div>
                 <div className="p-5 text-center">
@@ -91,7 +91,7 @@ export default function TeamSection() {
                   <div className="text-sm text-gray-500 mb-3">{m.role}</div>
                   <div className="flex items-center justify-center gap-3">
                     {(m.socials || []).map((s, idx) => (
-                      <a key={idx} href={s.url} target="_blank" rel="noreferrer" className="text-gold hover:text-gold-dark text-sm font-medium underline-offset-4 hover:underline">
+                      <a key={idx} href={s.url} target="_blank" rel="noreferrer" className="text-primary/70 hover:text-primary text-sm font-medium underline-offset-4 hover:underline">
                         {s.platform}
                       </a>
                     ))}
