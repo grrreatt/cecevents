@@ -13,7 +13,6 @@ import Footer from '@/components/Footer'
 import ChatBot from '@/components/ChatBot'
 import PortfolioModal from '@/components/PortfolioModal'
 import ScrollProgress from '@/components/ScrollProgress'
-import { portfolioData } from '@/lib/portfolio-data'
 import { cn } from '@/lib/utils'
 import TeamSection from '@/components/TeamSection'
 import HomePortfolioPreview from '@/components/HomePortfolioPreview'
@@ -77,7 +76,7 @@ export default function HomePage() {
             className="absolute inset-0 z-0 pointer-events-none"
             style={{ y: heroY }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-start/20 via-brand-mid/20 to-brand-end/20 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary pointer-events-none" />
             <div className="absolute inset-0 opacity-20 pointer-events-none">
               {[...Array(20)].map((_, i) => (
                 <motion.div
@@ -124,7 +123,7 @@ export default function HomePage() {
             >
               Transform Every
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-start via-brand-mid to-brand-end animate-shimmer">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold animate-shimmer">
                 Event Experience
               </span>
             </motion.h1>
@@ -147,19 +146,19 @@ export default function HomePage() {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative px-8 py-4 bg-gradient-to-r from-brand-start via-brand-mid to-brand-end text-white font-bold rounded-full overflow-hidden shadow-2xl shadow-black/20"
+                className="group relative px-8 py-4 bg-gradient-to-r from-gold to-gold-dark text-primary font-bold rounded-full overflow-hidden shadow-2xl shadow-gold/30"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Start Your Event
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-r from-gold-light to-gold opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="group px-8 py-4 glass-effect hairline text-primary font-bold rounded-full backdrop-blur-xl hover:bg-white/20 transition-all"
+                className="group px-8 py-4 glass-effect border-2 border-gold/30 text-gold font-bold rounded-full backdrop-blur-xl hover:bg-gold/10 transition-all"
               >
                 <span className="flex items-center justify-center gap-2">
                   <Play className="w-5 h-5" />
@@ -343,6 +342,25 @@ function SignatureServicesSection() {
 function PortfolioSection({ openPortfolio }: { openPortfolio: (project: any) => void }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const [items, setItems] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let mounted = true
+    const run = async () => {
+      try {
+        const res = await fetch('/api/portfolio', { next: { revalidate: 60 } })
+        const json = await res.json()
+        if (mounted) setItems(json?.data || [])
+      } catch {
+        if (mounted) setItems([])
+      } finally {
+        if (mounted) setLoading(false)
+      }
+    }
+    run()
+    return () => { mounted = false }
+  }, [])
 
   return (
     <section ref={ref} className="py-32 px-6 bg-white relative">
@@ -359,54 +377,58 @@ function PortfolioSection({ openPortfolio }: { openPortfolio: (project: any) => 
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioData.map((project, i) => {
-            const IconComponent = {
-              Stethoscope,
-              Building2,
-              GraduationCap,
-              Heart,
-              Rocket,
-              Store
-            }[project.icon as string] || Building2
+          {loading ? (
+            [...Array(6)].map((_, i) => (
+              <div key={i} className="rounded-2xl h-64 bg-gray-100 animate-pulse" />
+            ))
+          ) : (
+            items.map((project: any, i: number) => {
+              const IconComponent = {
+                Stethoscope,
+                Building2,
+                GraduationCap,
+                Heart,
+                Rocket,
+                Store
+              }[project.icon as string] || Building2
 
-            return (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                onClick={() => openPortfolio(project)}
-                className="group cursor-pointer perspective-1000"
-              >
-                <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all preserve-3d bg-gradient-to-br from-primary to-accent h-full">
-                  <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-gold/10 to-gold/5 flex items-center justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.6 }}
-                      className="w-32 h-32 rounded-full bg-gold/20 backdrop-blur-sm flex items-center justify-center"
-                    >
-                      <IconComponent className="w-16 h-16 text-gold" />
-                    </motion.div>
-                    
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gold/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="text-primary font-bold text-lg">View Details</span>
+              return (
+                <motion.div
+                  key={project._id || `${project.title}-${i}`}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: i * 0.1, duration: 0.6 }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  onClick={() => openPortfolio(project)}
+                  className="group cursor-pointer perspective-1000"
+                >
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all preserve-3d bg-gradient-to-br from-primary to-accent h-full">
+                    <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-gold/10 to-gold/5 flex items-center justify-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.6 }}
+                        className="w-32 h-32 rounded-full bg-gold/20 backdrop-blur-sm flex items-center justify-center"
+                      >
+                        <IconComponent className="w-16 h-16 text-gold" />
+                      </motion.div>
+                      <div className="absolute inset-0 bg-gold/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="text-primary font-bold text-lg">View Details</span>
+                      </div>
+                    </div>
+
+                    <div className="p-6 text-white">
+                      <span className="px-3 py-1 bg-gold/90 text-primary text-xs font-semibold rounded-full mb-3 inline-block">
+                        {project.category || 'Project'}
+                      </span>
+                      <h3 className="font-bold text-lg mb-2">{project.title}</h3>
+                      <p className="text-sm text-gray-300 mb-3">{project.description || ''}</p>
+                      <p className="text-sm text-gold">{project.location}{project.attendees ? ` • ${project.attendees}` : ''}</p>
                     </div>
                   </div>
-
-                  <div className="p-6 text-white">
-                    <span className="px-3 py-1 bg-gold/90 text-primary text-xs font-semibold rounded-full mb-3 inline-block">
-                      {project.category}
-                    </span>
-                    <h3 className="font-bold text-lg mb-2">{project.title}</h3>
-                    <p className="text-sm text-gray-300 mb-3">{project.desc}</p>
-                    <p className="text-sm text-gold">{project.location} • {project.attendees} delegates</p>
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
+                </motion.div>
+              )
+            })
+          )}
         </div>
       </div>
     </section>

@@ -66,6 +66,7 @@ export const portfolioLimitedQuery = (limit: number) => `
     attendees,
     description,
     coverImage,
+    icon,
     order
   }
 `
