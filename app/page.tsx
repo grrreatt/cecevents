@@ -213,9 +213,6 @@ export default function HomePage() {
         {/* ====== FEATURED PORTFOLIO FROM CMS ====== */}
         <HomePortfolioPreview />
 
-        {/* ====== PORTFOLIO SECTION (EXISTING INTERACTIVE) ====== */}
-        <PortfolioSection openPortfolio={openPortfolio} />
-
         {/* ====== FEATURE HIGHLIGHTS ====== */}
         <FeatureHighlights />
 
@@ -346,102 +343,6 @@ function SignatureServicesSection() {
   )
 }
 
-// Portfolio Section
-function PortfolioSection({ openPortfolio }: { openPortfolio: (project: any) => void }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.1 })
-  const [items, setItems] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    let mounted = true
-    const run = async () => {
-      try {
-        const res = await fetch('/api/portfolio', { next: { revalidate: 60 } })
-        const json = await res.json()
-        if (mounted) setItems(json?.data || [])
-      } catch {
-        if (mounted) setItems([])
-      } finally {
-        if (mounted) setLoading(false)
-      }
-    }
-    run()
-    return () => { mounted = false }
-  }, [])
-
-  return (
-    <section ref={ref} className="py-32 px-6 bg-white relative">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
-        >
-          <h2 className="text-5xl md:text-6xl font-bold text-primary mb-4">
-            Recent <span className="text-gold">Success Stories</span>
-          </h2>
-          <p className="text-xl text-gray-600">Events that set new standards</p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {loading ? (
-            [...Array(6)].map((_, i) => (
-              <div key={i} className="rounded-2xl h-64 bg-gray-100 animate-pulse" />
-            ))
-          ) : (
-            items.map((project: any, i: number) => {
-              const IconComponent = {
-                Stethoscope,
-                Building2,
-                GraduationCap,
-                Heart,
-                Rocket,
-                Store
-              }[project.icon as string] || Building2
-
-              return (
-                <motion.div
-                  key={project._id || `${project.title}-${i}`}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: i * 0.1, duration: 0.6 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  onClick={() => openPortfolio(project)}
-                  className="group cursor-pointer perspective-1000"
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all preserve-3d bg-gradient-to-br from-primary to-accent h-full">
-                    <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-gold/10 to-gold/5 flex items-center justify-center">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ duration: 0.6 }}
-                        className="w-32 h-32 rounded-full bg-gold/20 backdrop-blur-sm flex items-center justify-center"
-                      >
-                        <IconComponent className="w-16 h-16 text-gold" />
-                      </motion.div>
-                      <div className="absolute inset-0 bg-gold/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="text-primary font-bold text-lg">View Details</span>
-                      </div>
-                    </div>
-
-                    <div className="p-6 text-white">
-                      <span className="px-3 py-1 bg-gold/90 text-primary text-xs font-semibold rounded-full mb-3 inline-block">
-                        {project.category || 'Project'}
-                      </span>
-                      <h3 className="font-bold text-lg mb-2">{project.title}</h3>
-                      <p className="text-sm text-gray-300 mb-3">{project.description || ''}</p>
-                      <p className="text-sm text-gold">{project.location}{project.attendees ? ` • ${project.attendees}` : ''}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            })
-          )}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // Feature Highlights
 function FeatureHighlights() {
