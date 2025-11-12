@@ -16,6 +16,8 @@ import ScrollProgress from '@/components/ScrollProgress'
 import { cn } from '@/lib/utils'
 import TeamSection from '@/components/TeamSection'
 import HomePortfolioPreview from '@/components/HomePortfolioPreview'
+import QuoteBand from '@/components/QuoteBand'
+import HomeGalleryMosaic from '@/components/HomeGalleryMosaic'
 
 // Motion Counter Component
 function MotionCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -198,6 +200,12 @@ export default function HomePage() {
 
           {/* Scroll Indicator removed per request */}
         </section>
+
+        {/* ====== BOLD QUOTE BAND ====== */}
+        <QuoteBand />
+
+        {/* ====== GOLD MOSAIC GALLERY ====== */}
+        <HomeGalleryMosaic />
 
         {/* ====== SIGNATURE SERVICES (ENHANCED - KEEPING EXISTING) ====== */}
         <SignatureServicesSection />
