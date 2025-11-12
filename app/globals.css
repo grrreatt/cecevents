@@ -68,5 +68,22 @@
   .glow-gold-strong {
     box-shadow: 0 0 50px rgba(212, 175, 55, 0.5), 0 0 100px rgba(212, 175, 55, 0.2);
   }
+
+  /* Brand gradient helpers */
+  .gradient-brand {
+    @apply bg-gradient-to-br from-brand-start via-brand-mid to-brand-end;
+  }
+
+  .text-gradient-brand {
+    background-image: linear-gradient(135deg, theme('colors.brand-start'), theme('colors.brand-mid'), theme('colors.brand-end'));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Subtle hairline border */
+  .hairline {
+    @apply border border-line;
+  }
 }
 

@@ -139,12 +139,12 @@ export default function Navbar() {
             >
               <Link
                 href="/contact"
-                className="ml-4 px-6 py-2 bg-gradient-to-r from-gold to-gold-dark text-primary 
-                         font-semibold rounded-lg shadow-lg shadow-gold/20 hover:shadow-gold/40 
+                className="ml-4 px-6 py-2 bg-gradient-to-r from-brand-start via-brand-mid to-brand-end text-white 
+                         font-semibold rounded-lg shadow-lg shadow-black/20 hover:shadow-black/30 
                          transition-all duration-300 relative overflow-hidden group"
               >
                 <span className="relative z-10">Get Started</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-gold-light to-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
             </motion.div>
           </div>

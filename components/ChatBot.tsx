@@ -12,31 +12,35 @@ export default function ChatBot() {
   ])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return
 
     const userMessage = { id: Date.now(), text: input, sender: 'user' }
     setMessages(prev => [...prev, userMessage])
     setInput('')
     setIsTyping(true)
+    setError(null)
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botResponses = [
-        "Thank you for your interest! A team member will contact you within 24 hours.",
-        "We'd love to help with your event! Please call +91 98765 43210 or fill our contact form.",
-        "Our team specializes in on-site registration for events of all sizes. Let's discuss your requirements!"
-      ]
-      const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)]
-      
-      setMessages(prev => [...prev, { 
-        id: Date.now() + 1, 
-        text: randomResponse, 
-        sender: 'bot' 
-      }])
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: userMessage.text,
+          history: messages.slice(-8).map(m => ({ sender: m.sender, text: m.text })),
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data?.ok) throw new Error(data?.error || 'Failed to get response')
+      setMessages(prev => [...prev, { id: Date.now() + 1, text: String(data.answer || ''), sender: 'bot' }])
+    } catch (e: any) {
+      setError('Having trouble reaching the assistant. Showing a quick local answer.')
+      setMessages(prev => [...prev, { id: Date.now() + 2, text: 'We specialize in on-site registration: badge printing, staffed desks, QR check-in, and live analytics. Share city, dates, and attendee estimate for tailored advice.', sender: 'bot' }])
+    } finally {
       setIsTyping(false)
-    }, 1500)
+    }
   }
 
   return (
@@ -51,7 +55,7 @@ export default function ChatBot() {
         whileTap={{ scale: 0.9 }}
         className={cn(
           "fixed bottom-6 right-6 z-[9999] w-16 h-16 rounded-full",
-          "bg-gradient-to-br from-gold to-gold-dark text-primary",
+          "bg-gradient-to-br from-brand-start via-brand-mid to-brand-end text-white",
           "shadow-2xl shadow-gold/30 flex items-center justify-center",
           "glow-gold-strong",
           isOpen && "hidden"
@@ -68,31 +72,31 @@ export default function ChatBot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bottom-6 right-6 z-[9999] w-96 h-[500px] glass-effect rounded-3xl shadow-2xl overflow-hidden"
+            className="fixed bottom-6 right-6 z-[9999] w-96 h-[500px] glass-effect rounded-3xl shadow-2xl overflow-hidden border border-line"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-gold to-gold-dark p-4 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-brand-start via-brand-mid to-brand-end p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                  <MessageCircle className="w-5 h-5 text-gold" />
+                <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-primary">cecevents Assistant</h3>
-                  <p className="text-xs text-primary/70">Always here to help</p>
+                  <h3 className="font-bold text-white">cecevents Assistant</h3>
+                  <p className="text-xs text-white/80">Always here to help</p>
                 </div>
               </div>
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(false)}
-                className="text-primary hover:bg-primary/10 rounded-full p-2"
+                className="text-white/90 hover:bg-white/10 rounded-full p-2"
               >
                 <X className="w-5 h-5" />
               </motion.button>
             </div>
 
             {/* Messages */}
-            <div className="h-[360px] overflow-y-auto p-4 space-y-3 bg-white/50 backdrop-blur-sm">
+            <div className="h-[360px] overflow-y-auto p-4 space-y-3 bg-white/60 backdrop-blur-sm">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -107,8 +111,8 @@ export default function ChatBot() {
                     className={cn(
                       "max-w-[75%] p-3 rounded-2xl text-sm",
                       message.sender === 'user'
-                        ? 'bg-gold text-primary rounded-br-sm'
-                        : 'bg-white border border-gold/20 text-gray-800 rounded-bl-sm'
+                        ? 'bg-gradient-to-br from-brand-start to-brand-mid text-white rounded-br-sm'
+                        : 'bg-white border border-line text-gray-800 rounded-bl-sm'
                     )}
                   >
                     {message.text}
@@ -125,42 +129,45 @@ export default function ChatBot() {
                     <motion.div
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ repeat: Infinity, duration: 0.8, delay: 0 }}
-                      className="w-2 h-2 bg-gold rounded-full"
+                      className="w-2 h-2 bg-brand-start rounded-full"
                     />
                     <motion.div
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ repeat: Infinity, duration: 0.8, delay: 0.2 }}
-                      className="w-2 h-2 bg-gold rounded-full"
+                      className="w-2 h-2 bg-brand-mid rounded-full"
                     />
                     <motion.div
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ repeat: Infinity, duration: 0.8, delay: 0.4 }}
-                      className="w-2 h-2 bg-gold rounded-full"
+                      className="w-2 h-2 bg-brand-end rounded-full"
                     />
                   </div>
                   Typing...
                 </motion.div>
               )}
+              {error && (
+                <div className="text-xs text-red-600/80">{error}</div>
+              )}
             </div>
 
             {/* Input */}
-            <div className="p-4 bg-white border-t border-gold/20">
+            <div className="p-4 bg-white border-t border-line">
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                   placeholder="Type your message..."
-                  className="flex-1 px-4 py-2 rounded-full border-2 border-gold/20 focus:border-gold outline-none text-sm"
+                  className="flex-1 px-4 py-2 rounded-full border-2 border-line focus:border-brand-mid outline-none text-sm"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleSend}
-                  className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center"
+                  className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-start to-brand-mid flex items-center justify-center text-white"
                 >
-                  <Send className="w-4 h-4 text-primary" />
+                  <Send className="w-4 h-4" />
                 </motion.button>
               </div>
             </div>

@@ -77,7 +77,7 @@ export default function HomePage() {
             className="absolute inset-0 z-0 pointer-events-none"
             style={{ y: heroY }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-start/20 via-brand-mid/20 to-brand-end/20 pointer-events-none" />
             <div className="absolute inset-0 opacity-20 pointer-events-none">
               {[...Array(20)].map((_, i) => (
                 <motion.div
@@ -124,7 +124,7 @@ export default function HomePage() {
             >
               Transform Every
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold animate-shimmer">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-start via-brand-mid to-brand-end animate-shimmer">
                 Event Experience
               </span>
             </motion.h1>
@@ -147,19 +147,19 @@ export default function HomePage() {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative px-8 py-4 bg-gradient-to-r from-gold to-gold-dark text-primary font-bold rounded-full overflow-hidden shadow-2xl shadow-gold/30"
+                className="group relative px-8 py-4 bg-gradient-to-r from-brand-start via-brand-mid to-brand-end text-white font-bold rounded-full overflow-hidden shadow-2xl shadow-black/20"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Start Your Event
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-gold-light to-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="group px-8 py-4 glass-effect border-2 border-gold/30 text-gold font-bold rounded-full backdrop-blur-xl hover:bg-gold/10 transition-all"
+                className="group px-8 py-4 glass-effect hairline text-primary font-bold rounded-full backdrop-blur-xl hover:bg-white/20 transition-all"
               >
                 <span className="flex items-center justify-center gap-2">
                   <Play className="w-5 h-5" />

@@ -8,12 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#1a1a1a',
+        // Core dark/light contrast
+        primary: '#0b0d10',
+        accent: '#111827',
+        bgLight: '#F6F7FB',
+
+        // Premium gold accent (kept from current theme)
         gold: '#D4AF37',
         'gold-light': '#F4E5C2',
         'gold-dark': '#B8941E',
-        accent: '#2C2C2C',
-        bgLight: '#FAFAF8',
+
+        // Modern gradient brand inspired tones
+        'brand-start': '#4F46E5', // indigo-600
+        'brand-mid': '#8B5CF6',   // violet-500
+        'brand-end': '#F59E0B',   // amber-500
+
+        // Subtle neutrals
+        surface: '#12151A',
+        card: '#161A21',
+        line: 'rgba(255,255,255,0.08)'
       },
       fontFamily: {
         heading: ['"Plus Jakarta Sans"', 'sans-serif'],
