@@ -20,6 +20,7 @@ import QuoteBand from '@/components/QuoteBand'
 import HomeGalleryMosaic from '@/components/HomeGalleryMosaic'
 import CinematicLayer from '@/components/CinematicLayer'
 import AmbientAudioToggle from '@/components/AmbientAudioToggle'
+import ScrollMontage from '@/components/ScrollMontage'
 
 // Motion Counter Component
 function MotionCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -209,6 +210,9 @@ export default function HomePage() {
 
           {/* Scroll Indicator removed per request */}
         </section>
+
+        {/* ====== SCROLL MONTAGE STORY ====== */}
+        <ScrollMontage />
 
         {/* ====== BOLD QUOTE BAND ====== */}
         <QuoteBand />
