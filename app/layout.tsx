@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import HoloBackground from '@/components/HoloBackground'
+import Logo from '@/components/Logo'
 
 export const metadata: Metadata = {
   title: 'cecevents | Premium Event Management & Conference Services',
@@ -29,16 +29,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className="antialiased">
-        <div className="relative min-h-screen">
-          {/* 3D reactive background */}
-          <div className="pointer-events-none fixed inset-0 -z-10">
-            <HoloBackground />
-            <div className="absolute inset-0 mix-blend-screen opacity-20 scanlines" />
-            <div className="absolute inset-0 opacity-20 holo-noise" />
-          </div>
+      <body className="antialiased bg-[var(--color-bg)] text-[var(--color-text)]">
+        <div className="min-h-screen">
+          <header className="border-b border-[var(--border-color)]">
+            <div className="mx-auto w-full max-w-[1200px] px-[var(--space-24)] py-[var(--space-16)] flex items-center justify-between">
+              <Logo />
+              <nav className="hidden md:flex gap-[var(--space-16)] text-[var(--fs-s)] text-[color:var(--color-text-muted)]">
+                <a href="/services">Services</a>
+                <a href="/portfolio">Portfolio</a>
+                <a href="/team">Team</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+              </nav>
+            </div>
+          </header>
 
-          {children}
+          <main>{children}</main>
+
+          <footer className="mt-[var(--space-96)] border-t border-[var(--border-color)]">
+            <div className="mx-auto w-full max-w-[1200px] px-[var(--space-24)] py-[var(--space-24)] text-[var(--fs-s)] text-[color:var(--color-text-muted)]">
+              © {new Date().getFullYear()} cecevents
+            </div>
+          </footer>
         </div>
       </body>
     </html>

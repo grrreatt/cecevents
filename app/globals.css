@@ -7,18 +7,84 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Exo+2:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
+  :root {
+    /* Color tokens */
+    --color-bg: #FFFFFF;
+    --color-surface: #F7F8FA;
+    --color-text: #0B0D10;
+    --color-text-muted: #475569;
+    --color-brand: #1F6FEB; /* primary */
+    --color-accent: #0EA5E9; /* secondary */
+    --color-heritage: #D4AF37; /* limited highlight */
+    --color-border: rgba(0,0,0,0.08);
+
+    /* State colors */
+    --color-success: #059669;
+    --color-warning: #D97706;
+    --color-error: #DC2626;
+    --color-info: #2563EB;
+
+    /* Typography tokens */
+    --font-display: 'Inter Tight', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+    /* Type scale (size / line-height) */
+    --fs-display-xl: 72px; --lh-display-xl: 72px;
+    --fs-h1: 56px; --lh-h1: 64px;
+    --fs-h2: 40px; --lh-h2: 48px;
+    --fs-h3: 28px; --lh-h3: 36px;
+    --fs-h4: 22px; --lh-h4: 30px;
+    --fs-l: 18px; --lh-l: 28px;
+    --fs-m: 16px; --lh-m: 26px;
+    --fs-s: 14px; --lh-s: 22px;
+    --fs-caption: 12px; --lh-caption: 18px;
+
+    /* Spacing tokens (8px baseline) */
+    --space-4: 4px;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-20: 20px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-40: 40px;
+    --space-48: 48px;
+    --space-64: 64px;
+    --space-80: 80px;
+    --space-96: 96px;
+    --space-128: 128px;
+    --space-160: 160px;
+
+    /* Radii & borders */
+    --radius-0: 0px;
+    --radius-4: 4px;
+    --radius-8: 8px;
+    --border-1: 1px;
+    --border-color: var(--color-border);
+  }
+
   html {
     scroll-behavior: smooth;
     @apply overflow-x-hidden;
   }
   
   body {
-    @apply font-body text-gray-900 antialiased overflow-x-hidden;
+    @apply antialiased overflow-x-hidden;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-bg);
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
+
+  h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
+  h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
+  h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+  h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); }
+  p  { font-size: var(--fs-m); line-height: var(--lh-m); color: var(--color-text-muted); }
 }
 
 @layer utilities {
