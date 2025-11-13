@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import HoloBackground from '@/components/HoloBackground'
 
 export const metadata: Metadata = {
   title: 'cecevents | Premium Event Management & Conference Services',
@@ -28,7 +29,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <div className="relative min-h-screen">
+          {/* 3D reactive background */}
+          <div className="pointer-events-none fixed inset-0 -z-10">
+            <HoloBackground />
+            <div className="absolute inset-0 mix-blend-screen opacity-20 scanlines" />
+            <div className="absolute inset-0 opacity-20 holo-noise" />
+          </div>
+
+          {children}
+        </div>
+      </body>
     </html>
   )
 }

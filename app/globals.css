@@ -4,6 +4,7 @@
 
 /* Import Premium Google Fonts - Plus Jakarta Sans and Inter Tight */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter+Tight:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Exo+2:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   html {
@@ -84,6 +85,49 @@
   /* Subtle hairline border */
   .hairline {
     @apply border border-line;
+  }
+
+  /* Hologram scanlines overlay */
+  .scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 1px,
+      rgba(0,0,0,0) 3px,
+      rgba(0,0,0,0) 4px
+    );
+    animation: scan-move 8s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes scan-move {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+  }
+
+  /* Subtle holographic noise */
+  .holo-noise {
+    background-image: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 35%),
+      radial-gradient(circle at 80% 30%, rgba(20,247,255,0.12), transparent 35%),
+      radial-gradient(circle at 40% 80%, rgba(168,85,247,0.12), transparent 35%);
+    filter: saturate(120%);
+  }
+
+  /* Neon hover utility */
+  .neon-hover {
+    transition: box-shadow 300ms ease, transform 300ms ease, background-color 300ms ease;
+  }
+  .neon-hover:hover {
+    box-shadow: 0 0 12px rgba(0,178,255,0.6), 0 0 24px rgba(0,255,209,0.35);
+  }
+
+  /* 3D tilt utility */
+  .tilt-3d {
+    transform-style: preserve-3d;
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tilt-3d:hover {
+    transform: perspective(800px) rotateX(2deg) rotateY(-3deg) translateZ(0);
   }
 }
 

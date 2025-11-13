@@ -16,6 +16,7 @@ type Item = {
 export default function HomePortfolioPreview() {
   const [items, setItems] = useState<Item[] | null>(null)
   const [loading, setLoading] = useState(true)
+  const [isTouch, setIsTouch] = useState(false)
 
   useEffect(() => {
     const run = async () => {
@@ -30,6 +31,7 @@ export default function HomePortfolioPreview() {
       }
     }
     run()
+    setIsTouch(('ontouchstart' in window) || (navigator.maxTouchPoints > 0))
   }, [])
 
   const count = items?.length || 0
@@ -70,7 +72,21 @@ export default function HomePortfolioPreview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05, duration: 0.4 }}
-                className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all border border-gray-200"
+                className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all border border-gray-200 will-change-transform"
+                onMouseMove={(e) => {
+                  if (isTouch) return
+                  const card = e.currentTarget as HTMLDivElement
+                  const rect = card.getBoundingClientRect()
+                  const x = e.clientX - rect.left
+                  const y = e.clientY - rect.top
+                  const rx = ((y / rect.height) - 0.5) * -6
+                  const ry = ((x / rect.width) - 0.5) * 6
+                  card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`
+                }}
+                onMouseLeave={(e) => {
+                  if (isTouch) return
+                  (e.currentTarget as HTMLDivElement).style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0)'
+                }}
               >
                 <div className={`relative w-full ${imageClass} bg-gray-100 overflow-hidden`}>
                   {p.coverUrl ? (

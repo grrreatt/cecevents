@@ -153,7 +153,7 @@ export default function HomePage() {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative px-8 py-4 bg-gradient-to-r from-gold to-gold-dark text-primary font-bold rounded-full overflow-hidden shadow-2xl shadow-gold/30"
+                className="group relative px-8 py-4 bg-gradient-to-r from-gold to-gold-dark text-primary font-bold rounded-full overflow-hidden shadow-2xl shadow-gold/30 neon-hover tilt-3d"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Start Your Event
@@ -165,7 +165,7 @@ export default function HomePage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="group px-8 py-4 glass-effect border-2 border-gold/30 text-gold font-bold rounded-full backdrop-blur-xl hover:bg-gold/10 transition-all"
+                className="group px-8 py-4 glass-effect border-2 border-gold/30 text-gold font-bold rounded-full backdrop-blur-xl hover:bg-gold/10 transition-all neon-hover tilt-3d"
               >
                 <span className="flex items-center justify-center gap-2">
                   <Play className="w-5 h-5" />

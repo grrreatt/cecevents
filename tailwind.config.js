@@ -23,14 +23,20 @@ module.exports = {
         'brand-mid': '#8B5CF6',   // violet-500
         'brand-end': '#F59E0B',   // amber-500
 
+        // Neon sci-fi palette
+        neonBlue: '#00B2FF',
+        neonCyan: '#00FFD1',
+        neonPurple: '#A855F7',
+        neonTeal: '#14F7FF',
+
         // Subtle neutrals
         surface: '#12151A',
         card: '#161A21',
         line: 'rgba(255,255,255,0.08)'
       },
       fontFamily: {
-        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
-        body: ['"Inter Tight"', 'sans-serif'],
+        heading: ['"Orbitron"', '"Plus Jakarta Sans"', 'sans-serif'],
+        body: ['"Exo 2"', '"Inter Tight"', 'sans-serif'],
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1)',

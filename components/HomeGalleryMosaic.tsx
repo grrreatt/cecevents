@@ -57,12 +57,12 @@ export default function HomeGalleryMosaic() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.02 }}
-                className="group relative block overflow-hidden rounded-lg border border-gold/20 bg-white"
+                className="group relative block overflow-hidden rounded-lg border border-gold/20 bg-white neon-hover tilt-3d"
                 aria-label={g.title || 'Gallery image'}
               >
                 <div className="aspect-square">
                   {g.thumbUrl ? (
-                    <img src={g.thumbUrl} alt={g.title || 'Gallery'} className="w-full h-full object-cover" />
+                    <img src={g.thumbUrl} alt={g.title || 'Gallery'} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gold font-semibold">Image</div>
                   )}
