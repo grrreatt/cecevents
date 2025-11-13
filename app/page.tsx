@@ -18,6 +18,8 @@ import TeamSection from '@/components/TeamSection'
 import HomePortfolioPreview from '@/components/HomePortfolioPreview'
 import QuoteBand from '@/components/QuoteBand'
 import HomeGalleryMosaic from '@/components/HomeGalleryMosaic'
+import CinematicLayer from '@/components/CinematicLayer'
+import AmbientAudioToggle from '@/components/AmbientAudioToggle'
 
 // Motion Counter Component
 function MotionCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
@@ -79,6 +81,8 @@ export default function HomePage() {
             style={{ y: heroY }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-primary pointer-events-none" />
+            {/* Cinematic particle/light layer */}
+            <CinematicLayer />
             <div className="absolute inset-0 opacity-20 pointer-events-none">
               {[...Array(20)].map((_, i) => (
                 <motion.div
@@ -168,6 +172,11 @@ export default function HomePage() {
                 </span>
               </motion.button>
             </motion.div>
+
+            {/* Ambient sound (opt-in) */}
+            <div className="mt-6 flex justify-center">
+              <AmbientAudioToggle />
+            </div>
 
             {/* Live Stats */}
             <motion.div
