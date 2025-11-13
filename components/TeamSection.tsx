@@ -58,6 +58,17 @@ export default function TeamSection() {
     </div>
   )
 
+  const count = team?.length || 0
+  const gridClass = count <= 2
+    ? 'grid-cols-1 md:grid-cols-2'
+    : count <= 4
+    ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+    : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+
+  const avatarClass = count <= 2 ? 'w-32 h-32' : count <= 4 ? 'w-28 h-28' : 'w-24 h-24'
+  const nameClass = count <= 2 ? 'text-2xl' : count <= 4 ? 'text-xl' : 'text-lg'
+  const roleClass = count <= 2 ? 'text-base' : count <= 4 ? 'text-sm' : 'text-xs'
+
   return (
     <section className="py-32 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -69,7 +80,7 @@ export default function TeamSection() {
         {loading ? (
           placeholder
         ) : (team && team.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className={`grid ${gridClass} gap-8`}>
             {team.map((m) => (
               <motion.div
                 key={m._id}
@@ -81,14 +92,14 @@ export default function TeamSection() {
               >
                 <div className="aspect-square bg-white flex items-center justify-center overflow-hidden">
                   {m.photoUrl ? (
-                    <img src={m.photoUrl} alt={m.name} className="w-28 h-28 rounded-full object-cover" />
+                    <img src={m.photoUrl} alt={m.name} className={`${avatarClass} rounded-full object-cover`} />
                   ) : (
-                    <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-4xl font-bold">{m.name?.[0] || 'C'}</div>
+                    <div className={`${avatarClass} rounded-full bg-gold/80 flex items-center justify-center text-white text-2xl font-bold`}>{(m.name || 'C').split(' ').map(n=>n[0]).slice(0,2).join('')}</div>
                   )}
                 </div>
                 <div className="p-5 text-center">
-                  <div className="text-xl font-bold text-primary">{m.name}</div>
-                  <div className="text-sm text-gray-500 mb-3">{m.role}</div>
+                  <div className={`${nameClass} font-bold text-primary`}>{m.name}</div>
+                  <div className={`${roleClass} text-gray-500 mb-3`}>{m.role}</div>
                   <div className="flex items-center justify-center gap-3">
                     {(m.socials || []).map((s, idx) => (
                       <a key={idx} href={s.url} target="_blank" rel="noreferrer" className="text-primary/70 hover:text-primary text-sm font-medium underline-offset-4 hover:underline">
@@ -107,3 +118,4 @@ export default function TeamSection() {
     </section>
   )
 }
+

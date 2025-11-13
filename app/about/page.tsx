@@ -5,33 +5,13 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import TeamSection from '@/components/TeamSection'
 
 export default function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const teamMembers = [
-    {
-      name: "Ravi Sharma",
-      role: "CEO & Founder",
-      avatar: "https://ui-avatars.com/api/?name=Ravi+Sharma&size=200&background=D4AF37&color=1a1a1a&bold=true"
-    },
-    {
-      name: "Anjali Patel",
-      role: "Operations Director",
-      avatar: "https://ui-avatars.com/api/?name=Anjali+Patel&size=200&background=B8941E&color=fff&bold=true"
-    },
-    {
-      name: "Vikram Reddy",
-      role: "Client Relations Head",
-      avatar: "https://ui-avatars.com/api/?name=Vikram+Reddy&size=200&background=F4E5C2&color=1a1a1a&bold=true"
-    },
-    {
-      name: "Neha Singh",
-      role: "Technical Director",
-      avatar: "https://ui-avatars.com/api/?name=Neha+Singh&size=200&background=D4AF37&color=fff&bold=true"
-    }
-  ]
+  
 
   const values = [
     {
@@ -152,40 +132,8 @@ export default function About() {
           </div>
         </section>
 
-        {/* Team Section */}
-        <section className="py-20 px-6">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-bold text-center text-primary mb-4">
-              Meet Our <span className="text-gold">Team</span>
-            </h2>
-            <p className="text-center text-gray-600 mb-12">The experts behind your successful events</p>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {teamMembers.map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8 }}
-                  className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="relative w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden 
-                                border-4 border-gold">
-                    <img
-                      src={member.avatar}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-primary text-center mb-1">{member.name}</h3>
-                  <p className="text-gold text-center font-semibold">{member.role}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Team Section (Sanity-powered, shared with Home) */}
+        <TeamSection />
 
         {/* Stats Section */}
         <section className="py-20 px-6 bg-gradient-to-r from-primary to-accent text-white">
