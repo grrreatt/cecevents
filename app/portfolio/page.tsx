@@ -1,9 +1,6 @@
 import { client } from '@/lib/sanity.client'
 import { portfolioItemsQuery } from '@/lib/sanity.queries'
 import { urlFor } from '@/lib/sanity.image'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import PortfolioClient from './PortfolioClient'
 
 type PortfolioItem = {
   _id?: string
@@ -91,27 +88,31 @@ export default async function Portfolio() {
     : fallbackItems
 
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen bg-bgLight pt-20">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary via-accent to-primary text-white py-20 px-6">
-          <div className="max-w-7xl mx-auto text-center">
-            <div className="inline-block mb-4 px-4 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full">
-              <span className="text-gold font-semibold">Our Portfolio</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Successful <span className="text-gold">Events</span> Worldwide
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Explore our portfolio of international conferences and events we've successfully managed
-            </p>
-          </div>
-        </section>
+    <main>
+      <section className="py-[var(--space-128)] border-b border-[var(--border-color)]">
+        <div className="mx-auto w-full max-w-[1200px] px-[var(--space-24)]">
+          <header className="mb-[var(--space-32)]">
+            <div className="text-[12px] leading-[18px] tracking-[0.08em] uppercase text-[color:var(--color-text-muted)] mb-[var(--space-12)]">Portfolio</div>
+            <h1 className="text-[40px] leading-[48px] font-semibold tracking-[-0.02em] text-[color:var(--color-text)]">Successful events</h1>
+            <p className="mt-[var(--space-12)] text-[16px] leading-[26px] max-w-[72ch] text-[color:var(--color-text-muted)]">Explore a selection of our work across India.</p>
+          </header>
 
-        <PortfolioClient items={items} />
-      </main>
-      <Footer />
-    </>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[var(--space-24)]">
+            {items.map((p, idx) => (
+              <article key={(p as any)._id ?? `fallback-${idx}`} className="rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden">
+                <div className="aspect-[4/3] bg-[var(--color-surface)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {p.avatar ? <img src={p.avatar} alt={p.title} className="w-full h-full object-cover" /> : null}
+                </div>
+                <div className="p-[var(--space-20)]">
+                  <h2 className="text-[18px] leading-[26px] font-semibold text-[color:var(--color-text)] mb-[var(--space-4)]">{p.title}</h2>
+                  <div className="text-[12px] leading-[18px] text-[color:var(--color-text-muted)]">{[p.location, p.attendees].filter(Boolean).join(' • ')}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }

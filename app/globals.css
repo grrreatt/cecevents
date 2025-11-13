@@ -8,15 +8,15 @@
 
 @layer base {
   :root {
-    /* Color tokens */
-    --color-bg: #FFFFFF;
-    --color-surface: #F7F8FA;
-    --color-text: #0B0D10;
-    --color-text-muted: #475569;
-    --color-brand: #1F6FEB; /* primary */
-    --color-accent: #0EA5E9; /* secondary */
-    --color-heritage: #D4AF37; /* limited highlight */
-    --color-border: rgba(0,0,0,0.08);
+    /* Color tokens (aligned to existing Tailwind theme) */
+    --color-bg: #F6F7FB;            /* bgLight */
+    --color-surface: #FFFFFF;       /* white cards */
+    --color-text: #0b0d10;          /* primary dark text */
+    --color-text-muted: #475569;    /* slate-600 */
+    --color-brand: #D4AF37;         /* gold accent as brand */
+    --color-accent: #111827;        /* accent dark */
+    --color-heritage: #D4AF37;      /* heritage gold */
+    --color-border: rgba(0,0,0,0.10);
 
     /* State colors */
     --color-success: #059669;

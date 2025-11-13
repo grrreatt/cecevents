@@ -4,6 +4,7 @@ import PortfolioSection from '@/components/PortfolioSection'
 import TeamSectionStatic from '@/components/TeamSectionStatic'
 import AboutSectionStatic from '@/components/AboutSectionStatic'
 import ContactSectionStatic from '@/components/ContactSectionStatic'
+import HomeGalleryMosaic from '@/components/HomeGalleryMosaic'
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <PortfolioSection />
       <TeamSectionStatic />
       <AboutSectionStatic />
+      <HomeGalleryMosaic />
       <ContactSectionStatic />
     </>
   )
