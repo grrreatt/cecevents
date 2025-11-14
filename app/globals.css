@@ -8,15 +8,17 @@
 
 @layer base {
   :root {
-    /* Color tokens (aligned to existing Tailwind theme) */
-    --color-bg: #F6F7FB;            /* bgLight */
-    --color-surface: #FFFFFF;       /* white cards */
-    --color-text: #0b0d10;          /* primary dark text */
-    --color-text-muted: #475569;    /* slate-600 */
-    --color-brand: #D4AF37;         /* gold accent as brand */
-    --color-accent: #111827;        /* accent dark */
-    --color-heritage: #D4AF37;      /* heritage gold */
-    --color-border: rgba(0,0,0,0.10);
+    /* Dark navy + gold theme */
+    --bg-grad-start: #0B1220;
+    --bg-grad-end: #0A0F18;
+    --color-bg: #0A0F18;             /* page background base */
+    --color-surface: #111827;        /* dark surface/cards */
+    --color-text: #F3F4F6;           /* primary text on dark */
+    --color-text-muted: #C7CDD8;     /* muted text on dark */
+    --color-brand: #D4AF37;          /* gold accent */
+    --color-accent: #1F2937;         /* deep gray-blue */
+    --color-heritage: #D4AF37;
+    --color-border: rgba(255,255,255,0.10);
 
     /* State colors */
     --color-success: #059669;
@@ -72,7 +74,11 @@
     @apply antialiased overflow-x-hidden;
     font-family: var(--font-body);
     color: var(--color-text);
-    background: var(--color-bg);
+    background-color: var(--color-bg);
+    background-image: radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,0.04), transparent 60%),
+      radial-gradient(800px 400px at 80% -10%, rgba(212,175,55,0.06), transparent 60%),
+      linear-gradient(180deg, var(--bg-grad-start), var(--bg-grad-end));
+    background-attachment: fixed;
   }
   
   h1, h2, h3, h4, h5, h6 {
