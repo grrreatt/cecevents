@@ -40,11 +40,11 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="relative bg-primary text-white border-t border-gold/20 overflow-hidden">
+    <footer className="relative bg-[color:var(--color-bg)] text-[color:var(--color-text)] border-t border-[color:var(--color-brand)]/20 overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gold rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gold-light rounded-full blur-3xl" />
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl bg-[color:var(--color-brand)]" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl bg-[color:var(--color-brand)]/60" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
@@ -60,15 +60,15 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4 group cursor-pointer">
               <motion.div 
                 whileHover={{ scale: 1.1, rotate: 10 }}
-                className="relative w-10 h-10 bg-gradient-to-br from-gold to-gold-dark rounded-xl flex items-center justify-center overflow-hidden"
+                className="relative w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden bg-[color:var(--color-brand)]"
               >
-                <span className="text-white font-bold text-xl relative z-10">C</span>
+                <span className="text-[color:var(--color-bg)] font-bold text-xl relative z-10">C</span>
                 <div className="absolute inset-0 shimmer" />
               </motion.div>
-              <h3 className="text-2xl font-bold group-hover:text-gold transition-colors">{companyName}</h3>
+              <h3 className="text-2xl font-bold group-hover:text-[color:var(--color-brand)] transition-colors">{companyName}</h3>
             </div>
-            <p className="text-gray-400 mb-4 max-w-md leading-relaxed">{tagline}</p>
-            <p className="text-sm text-gray-500">
+            <p className="text-[color:var(--color-text-muted)] mb-4 max-w-md leading-relaxed">{tagline}</p>
+            <p className="text-sm text-[color:var(--color-text-muted)]/80">
               Trusted by organizations across India for professional event management since 2014.
             </p>
           </motion.div>
@@ -80,7 +80,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="font-bold text-gold mb-4">Quick Links</h4>
+            <h4 className="font-bold text-[color:var(--color-brand)] mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {navigation.map((item, i) => (
                 <motion.li 
@@ -92,9 +92,9 @@ export default function Footer() {
                 >
                   <Link
                     href={item.href}
-                    className="text-gray-400 hover:text-gold transition-colors duration-300 inline-flex items-center gap-2 group"
+                    className="text-[color:var(--color-text-muted)] hover:text-[color:var(--color-brand)] transition-colors duration-300 inline-flex items-center gap-2 group"
                   >
-                    <span className="w-0 h-px bg-gold group-hover:w-4 transition-all duration-300" />
+                    <span className="w-0 h-px bg-[color:var(--color-brand)] group-hover:w-4 transition-all duration-300" />
                     {item.name}
                   </Link>
                 </motion.li>
@@ -109,22 +109,22 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="font-bold text-gold mb-4">Contact</h4>
-            <ul className="space-y-3 text-gray-400">
+            <h4 className="font-bold text-[color:var(--color-brand)] mb-4">Contact</h4>
+            <ul className="space-y-3 text-[color:var(--color-text-muted)]">
               <motion.li whileHover={{ x: 5 }}>
-                <a href="tel:+919876543210" className="hover:text-gold transition-colors flex items-center gap-2">
-                  <span className="text-gold">📞</span>
+                <a href="tel:+919876543210" className="hover:text-[color:var(--color-brand)] transition-colors flex items-center gap-2">
+                  <span className="text-[color:var(--color-brand)]">📞</span>
                   +91 98765 43210
                 </a>
               </motion.li>
               <motion.li whileHover={{ x: 5 }}>
-                <a href="mailto:info@cecevents.com" className="hover:text-gold transition-colors flex items-center gap-2">
-                  <span className="text-gold">✉️</span>
+                <a href="mailto:info@cecevents.com" className="hover:text-[color:var(--color-brand)] transition-colors flex items-center gap-2">
+                  <span className="text-[color:var(--color-brand)]">✉️</span>
                   info@cecevents.com
                 </a>
               </motion.li>
               <li className="text-sm flex items-start gap-2">
-                <span className="text-gold">📍</span>
+                <span className="text-[color:var(--color-brand)]">📍</span>
                 <span>
                   Mumbai | Delhi | Bangalore<br />
                   Serving All India
@@ -140,7 +140,7 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="pt-8 border-t border-gold/20"
+          className="pt-8 border-t border-[color:var(--color-brand)]/20"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Social Icons */}
@@ -157,9 +157,12 @@ export default function Footer() {
                   transition={{ delay: 0.35 + i * 0.05, type: "spring" }}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 bg-gold/10 hover:bg-gold rounded-xl flex items-center justify-center 
-                           hover:text-primary transition-all duration-300 border border-gold/20 hover:border-gold 
-                           hover:shadow-lg hover:shadow-gold/30"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center 
+                           transition-all duration-300 border 
+                           bg-[color:var(--color-brand)]/10 hover:bg-[color:var(--color-brand)] 
+                           text-[color:var(--color-text)] hover:text-[color:var(--color-bg)]
+                           border-[color:var(--color-brand)]/20 hover:border-[color:var(--color-brand)] 
+                           hover:shadow-lg"
                   aria-label={platform}
                 >
                   <span className="font-bold">{platform[0].toUpperCase()}</span>
@@ -168,8 +171,8 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-            <p className="text-gray-400 text-sm">
-              © {currentYear} <span className="text-gold font-semibold">{companyName}</span>. All rights reserved.
+            <p className="text-[color:var(--color-text-muted)] text-sm">
+              © {currentYear} <span className="text-[color:var(--color-brand)] font-semibold">{companyName}</span>. All rights reserved.
             </p>
           </div>
         </motion.div>
@@ -183,11 +186,10 @@ export default function Footer() {
         viewport={{ once: true }}
         whileHover={{ scale: 1.1, y: -5 }}
         whileTap={{ scale: 0.9 }}
-        className="absolute bottom-8 right-8 w-12 h-12 bg-gradient-to-br from-gold to-gold-dark 
-                 rounded-full flex items-center justify-center shadow-lg shadow-gold/30 
-                 hover:shadow-xl hover:shadow-gold/50 transition-all"
+        className="absolute bottom-8 right-8 w-12 h-12 rounded-full flex items-center justify-center 
+                 shadow-lg transition-all bg-[color:var(--color-brand)] text-[color:var(--color-bg)]"
       >
-        <ChevronUp className="w-6 h-6 text-primary" />
+        <ChevronUp className="w-6 h-6" />
       </motion.button>
     </footer>
   )

@@ -11,19 +11,19 @@ export default function ContactSectionStatic() {
         <form className="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-16)]">
           <div className="flex flex-col gap-[var(--space-8)]">
             <label htmlFor="name" className="text-[12px] leading-[18px] uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">Name</label>
-            <input id="name" name="name" type="text" className="h-[44px] px-[var(--space-12)] rounded-[8px] border border-[var(--color-border)] bg-white" />
+            <input id="name" name="name" type="text" className="h-[44px] px-[var(--space-12)] rounded-[8px] border border-[var(--color-border)] bg-[color:var(--color-surface)] text-[color:var(--color-text)]" />
           </div>
           <div className="flex flex-col gap-[var(--space-8)]">
             <label htmlFor="phone" className="text-[12px] leading-[18px] uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">Phone</label>
-            <input id="phone" name="phone" type="tel" className="h-[44px] px-[var(--space-12)] rounded-[8px] border border-[var(--color-border)] bg-white" />
+            <input id="phone" name="phone" type="tel" className="h-[44px] px-[var(--space-12)] rounded-[8px] border border-[var(--color-border)] bg-[color:var(--color-surface)] text-[color:var(--color-text)]" />
           </div>
           <div className="flex flex-col gap-[var(--space-8)] md:col-span-2">
             <label htmlFor="email" className="text-[12px] leading-[18px] uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">Email</label>
-            <input id="email" name="email" type="email" className="h-[44px] px-[var(--space-12)] rounded-[8px] border border-[var(--color-border)] bg-white w-full" />
+            <input id="email" name="email" type="email" className="h-[44px] px-[var(--space-12)] rounded-[8px] border border-[var(--color-border)] bg-[color:var(--color-surface)] text-[color:var(--color-text)] w-full" />
           </div>
           <div className="flex flex-col gap-[var(--space-8)] md:col-span-2">
             <label htmlFor="message" className="text-[12px] leading-[18px] uppercase tracking-[0.08em] text-[color:var(--color-text-muted)]">Details</label>
-            <textarea id="message" name="message" rows={6} className="p-[var(--space-12)] rounded-[8px] border border-[var(--color-border)] bg-white w-full" />
+            <textarea id="message" name="message" rows={6} className="p-[var(--space-12)] rounded-[8px] border border-[var(--color-border)] bg-[color:var(--color-surface)] text-[color:var(--color-text)] w-full" />
           </div>
           <div className="md:col-span-2">
             <button type="submit" className="inline-flex items-center px-[20px] py-[12px] rounded-[8px] bg-[color:var(--color-brand)] text-white text-[14px] leading-[22px] font-semibold">

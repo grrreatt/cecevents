@@ -19,6 +19,8 @@
     --color-accent: #1F2937;         /* deep gray-blue */
     --color-heritage: #D4AF37;
     --color-border: rgba(255,255,255,0.10);
+    /* Alias for legacy references */
+    --border-color: var(--color-border);
 
     /* State colors */
     --color-success: #059669;

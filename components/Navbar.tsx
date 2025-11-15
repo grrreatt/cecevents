@@ -59,8 +59,8 @@ export default function Navbar() {
       className={cn(
         "fixed w-full top-0 z-50 transition-all duration-300",
         scrolled 
-          ? "bg-primary/95 backdrop-blur-xl border-b border-gold/20 shadow-2xl shadow-black/10" 
-          : "bg-primary/80 backdrop-blur-md border-b border-gold/10"
+          ? "bg-[color:var(--color-bg)]/95 backdrop-blur-xl border-b border-[color:var(--color-brand)]/20 shadow-2xl shadow-black/10" 
+          : "bg-[color:var(--color-bg)]/80 backdrop-blur-md border-b border-[color:var(--color-brand)]/10"
       )}
     >
       <div className="max-w-7xl mx-auto px-6">
@@ -74,22 +74,22 @@ export default function Navbar() {
               className={
                 siteSettings?.logoUrl
                   ? "relative w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden"
-                  : "relative w-10 h-10 bg-gradient-to-br from-gold to-gold-dark rounded-xl flex items-center justify-center shadow-lg shadow-gold/30 group-hover:shadow-gold/50 overflow-hidden"
+                  : "relative w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden shadow-lg [--tw-shadow-color:rgba(212,175,55,0.3)] group-hover:[--tw-shadow-color:rgba(212,175,55,0.5)]"
               }
             >
               {siteSettings?.logoUrl ? (
                 <img src={siteSettings.logoUrl} alt={companyName} className="w-full h-full object-contain" />
               ) : (
                 <>
-                  <span className="text-white font-bold text-xl">C</span>
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold-light to-gold opacity-0 group-hover:opacity-100 rounded-xl transition-opacity" />
+                  <span className="text-[color:var(--color-text)] font-bold text-xl">C</span>
+                  <div className="absolute inset-0 rounded-xl transition-opacity opacity-0 group-hover:opacity-100 bg-[color:var(--color-brand)]/30" />
                 </>
               )}
             </motion.div>
             <motion.span 
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-xl font-bold text-white tracking-wide group-hover:text-gold transition-colors"
+              className="text-xl font-bold text-[color:var(--color-text)] tracking-wide group-hover:text-[color:var(--color-brand)] transition-colors"
             >
               {companyName}
             </motion.span>
@@ -111,20 +111,20 @@ export default function Navbar() {
                     className={cn(
                       "relative px-4 py-2 rounded-lg font-medium transition-all duration-300 group",
                       isActive
-                        ? 'text-gold'
-                        : 'text-gold-light hover:text-gold'
+                        ? 'text-[color:var(--color-brand)]'
+                        : 'text-[color:var(--color-brand)]/80 hover:text-[color:var(--color-brand)]'
                     )}
                   >
                     {item.name}
                     {isActive && (
                       <motion.div
                         layoutId="navbar-indicator"
-                        className="absolute inset-0 bg-gold/10 rounded-lg border border-gold/30"
+                        className="absolute inset-0 rounded-lg border bg-[color:var(--color-brand)]/10 border-[color:var(--color-brand)]/30"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
                     {!isActive && (
-                      <span className="absolute inset-0 bg-gold/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity bg-[color:var(--color-brand)]/5" />
                     )}
                   </Link>
                 </motion.div>
@@ -139,7 +139,7 @@ export default function Navbar() {
             >
               <Link
                 href="/contact"
-                className="ml-4 px-6 py-2 bg-gradient-to-r from-brand-start via-brand-mid to-brand-end text-white 
+                className="ml-4 px-6 py-2 bg-[color:var(--color-brand)] text-[color:var(--color-bg)] 
                          font-semibold rounded-lg shadow-lg shadow-black/20 hover:shadow-black/30 
                          transition-all duration-300 relative overflow-hidden group"
               >
@@ -152,7 +152,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-gold p-2"
+            className="md:hidden text-[color:var(--color-brand)] p-2"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
@@ -172,7 +172,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-primary border-t border-gold/20"
+            className="md:hidden bg-[color:var(--color-bg)] border-t border-[color:var(--color-brand)]/20"
           >
             <div className="px-6 py-4 space-y-2">
               {navigation.map((item) => {
@@ -184,8 +184,8 @@ export default function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`block px-4 py-3 rounded-lg font-medium transition-all ${
                       isActive
-                        ? 'bg-gold text-primary'
-                        : 'text-gold-light hover:bg-gold/10'
+                        ? 'bg-[color:var(--color-brand)] text-[color:var(--color-bg)]'
+                        : 'text-[color:var(--color-brand)]/80 hover:bg-[color:var(--color-brand)]/10'
                     }`}
                   >
                     {item.name}

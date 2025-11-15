@@ -39,17 +39,17 @@ export default function About() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-bgLight pt-20">
+      <main className="min-h-screen bg-[color:var(--color-bg)] pt-20">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary via-accent to-primary text-white py-20 px-6">
+        <section className="bg-gradient-to-br from-[color:var(--bg-grad-start)] via-[color:var(--color-accent)] to-[color:var(--bg-grad-end)] text-[color:var(--color-text)] py-20 px-6">
           <div className="max-w-7xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-block mb-4 px-4 py-2 bg-gold/20 backdrop-blur-sm border border-gold/30 rounded-full"
+              className="inline-block mb-4 px-4 py-2 bg-[color:var(--color-brand)]/20 backdrop-blur-sm border border-[color:var(--color-brand)]/30 rounded-full"
             >
-              <span className="text-gold font-semibold">About Us</span>
+              <span className="text-[color:var(--color-brand)] font-semibold">About Us</span>
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -57,13 +57,13 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-5xl md:text-6xl font-bold mb-6"
             >
-              Your Trusted <span className="text-gold">Event Partner</span>
+              Your Trusted <span className="text-[color:var(--color-brand)]">Event Partner</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-gray-300 max-w-3xl mx-auto"
+              className="text-xl text-[color:var(--color-text-muted)] max-w-3xl mx-auto"
             >
               A decade of excellence in conference management and event coordination
             </motion.p>
