@@ -11,31 +11,32 @@ export default async function Services() {
 
   return (
     <main>
-      <section className="py-[var(--space-128)] border-b border-[var(--border-color)]">
-        <div className="mx-auto w-full max-w-[1200px] px-[var(--space-24)]">
-          <header className="mb-[var(--space-32)]">
-            <div className="text-[12px] leading-[18px] tracking-[0.08em] uppercase text-[color:var(--color-text-muted)] mb-[var(--space-12)]">Our Services</div>
-            <h1 className="text-[40px] leading-[48px] font-semibold tracking-[-0.02em] text-[color:var(--color-text)]">Comprehensive event solutions</h1>
-            <p className="mt-[var(--space-12)] text-[16px] leading-[26px] max-w-[72ch] text-[color:var(--color-text-muted)]">End-to-end on-site registration and event operations across India.</p>
-          </header>
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold text-primary">Professional Conference Organizer (PCO)</h1>
+            <p className="text-gray-600 mt-3">End-to-end on-site registration & operations across India</p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-24)]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((s) => (
-              <article key={s._id} className="rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-[var(--space-24)]">
-                <h2 className="text-[22px] leading-[30px] font-semibold text-[color:var(--color-text)] mb-[var(--space-8)]">{s.title}</h2>
-                {s.description ? (
-                  <p className="text-[14px] leading-[22px] text-[color:var(--color-text-muted)] mb-[var(--space-16)]">{s.description}</p>
-                ) : null}
-                {Array.isArray(s.features) && s.features.length ? (
-                  <ul className="mt-[var(--space-8)] space-y-[var(--space-8)] text-[14px] leading-[22px] text-[color:var(--color-text)]">
-                    {s.features.map((f, i) => (
-                      <li key={i} className="flex items-start gap-[var(--space-8)]">
-                        <span className="inline-block w-[6px] h-[6px] rounded-full bg-[color:var(--color-brand)] translate-y-[8px]" />
-                        <span className="text-[color:var(--color-text-muted)]">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
+              <article key={s._id} className="group bg-white rounded-2xl border border-gray-200 hover:border-gray-300 transition-all overflow-hidden shadow-sm hover:shadow-lg">
+                <div className="p-6">
+                  <h2 className="text-xl md:text-2xl font-semibold text-primary mb-2">{s.title}</h2>
+                  {s.description ? (
+                    <p className="text-gray-600 mb-4">{s.description}</p>
+                  ) : null}
+                  {Array.isArray(s.features) && s.features.length ? (
+                    <ul className="mt-2 space-y-2">
+                      {s.features.map((f, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold translate-y-2" />
+                          <span className="text-gray-700">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
               </article>
             ))}
           </div>

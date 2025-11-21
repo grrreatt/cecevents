@@ -86,13 +86,6 @@ export default function Navbar() {
                 </>
               )}
             </motion.div>
-            <motion.span 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-xl font-bold text-[color:var(--color-text)] tracking-wide group-hover:text-[color:var(--color-brand)] transition-colors"
-            >
-              {companyName}
-            </motion.span>
           </Link>
 
           {/* Desktop Navigation */}
