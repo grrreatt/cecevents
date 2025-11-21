@@ -10,6 +10,19 @@ export const portfolioItemsQuery = `
     gallery,
     videos,
     icon
+}
+`
+
+export const heroSectionQuery = `
+  *[_type == "heroSection"][0] {
+    title,
+    subtitle,
+    heroImage,
+    ctaPrimaryLabel,
+    ctaPrimaryLink,
+    ctaSecondaryLabel,
+    ctaSecondaryLink,
+    benefits
   }
 `
 
