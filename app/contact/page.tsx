@@ -13,7 +13,7 @@ export default function Contact() {
   const contactInfo = {
     phone: "+91 98765 43210",
     email: "info@cecevents.com",
-    address: "Corporate Office: Bandra Kurla Complex, Mumbai, Maharashtra 400051",
+    address: "R-8 Nehru Enclave New Delhi",
     hours: "Mon-Sat: 9:00 AM - 7:00 PM IST"
   }
 
@@ -38,6 +38,9 @@ export default function Contact() {
       })
 
       if (response.ok) {
+        const normalized = contactInfo.phone.replace(/[^0-9]/g, '')
+        const text = `Hello, I'm ${formData.name}. ${formData.message} (Email: ${formData.email}, Phone: ${formData.phone})`
+        window.location.href = `https://wa.me/${normalized}?text=${encodeURIComponent(text)}`
         setStatus('success')
         setFormData({ name: '', email: '', phone: '', message: '' })
         setTimeout(() => setStatus(''), 3000)
