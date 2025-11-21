@@ -8,24 +8,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Core dark/light contrast
-        primary: '#0b0d10',
-        accent: '#111827',
+        // Core dark/light contrast (Prussian blue theme)
+        primary: '#023047',
+        accent: '#219ebc',
         bgLight: '#F6F7FB',
 
-        // Premium gold accent (kept from current theme)
-        gold: '#D4AF37',
-        'gold-light': '#F4E5C2',
-        'gold-dark': '#B8941E',
+        // Brand accents from provided palette
+        gold: '#ffb703',
+        'gold-light': '#8ecae6',
+        'gold-dark': '#fb8500',
 
-        // Modern gradient brand inspired tones
-        'brand-start': '#4F46E5', // indigo-600
-        'brand-mid': '#8B5CF6',   // violet-500
-        'brand-end': '#F59E0B',   // amber-500
+        // Gradient brand tones mapped to blues
+        'brand-start': '#8ecae6',
+        'brand-mid': '#219ebc',
+        'brand-end': '#023047',
 
-        // Neon sci-fi palette
-        neonBlue: '#00B2FF',
-        neonCyan: '#00FFD1',
+        // Accent palette (keep optional neon utils)
+        neonBlue: '#219ebc',
+        neonCyan: '#8ecae6',
         neonPurple: '#A855F7',
         neonTeal: '#14F7FF',
 

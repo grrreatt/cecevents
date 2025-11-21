@@ -33,7 +33,7 @@ export default function GalleryGrid() {
   const skeleton = (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {[...Array(8)].map((_, i) => (
-        <div key={i} className="aspect-[4/3] rounded-xl bg-gray-100 animate-pulse" />
+        <div key={i} className="aspect-[4/3] rounded-xl bg-gradient-to-br from-brand-start/10 to-brand-mid/10 animate-pulse" />
       ))}
     </div>
   )
@@ -70,7 +70,7 @@ export default function GalleryGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.03 }}
-                className="group relative block overflow-hidden rounded-xl border border-gold/20 hover:border-gold/40"
+                className="group relative block overflow-hidden rounded-2xl border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-lg transition-all"
               >
                 <div className="aspect-[4/3] bg-gradient-to-br from-gold/10 to-gold-light/10">
                   {g.thumbUrl ? (
@@ -79,7 +79,7 @@ export default function GalleryGrid() {
                     <div className="w-full h-full flex items-center justify-center text-gold font-semibold">Image</div>
                   )}
                 </div>
-                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors" />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/15 transition-colors" />
               </motion.a>
             ))}
           </div>

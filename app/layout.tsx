@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import Logo from '@/components/Logo'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'cecevents | Premium Event Management & Conference Services',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#D4AF37',
+  themeColor: '#ffb703',
 }
 
 export default function RootLayout({
@@ -30,28 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="antialiased bg-[var(--color-bg)] text-[var(--color-text)]">
-        <div className="min-h-screen">
-          <header className="border-b border-[var(--border-color)]">
-            <div className="mx-auto w-full max-w-[1200px] px-[var(--space-24)] py-[var(--space-16)] flex items-center justify-between">
-              <Logo />
-              <nav className="hidden md:flex gap-[var(--space-16)] text-[var(--fs-s)] text-[color:var(--color-text-muted)]">
-                <a href="/services">Services</a>
-                <a href="/portfolio">Portfolio</a>
-                <a href="/team">Team</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
-              </nav>
-            </div>
-          </header>
-
-          <main>{children}</main>
-
-          <footer className="mt-[var(--space-96)] border-t border-[var(--border-color)]">
-            <div className="mx-auto w-full max-w-[1200px] px-[var(--space-24)] py-[var(--space-24)] text-[var(--fs-s)] text-[color:var(--color-text-muted)]">
-              © {new Date().getFullYear()} cecevents
-            </div>
-          </footer>
-        </div>
+        <Navbar />
+        <main className="pt-20">{children}</main>
+        <Footer />
       </body>
     </html>
   )

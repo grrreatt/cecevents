@@ -1,14 +1,31 @@
 export default function AboutSectionStatic() {
   return (
-    <section className="py-[var(--space-128)] border-b border-[var(--border-color)]">
-      <div className="mx-auto w-full max-w-[1200px] px-[var(--space-24)] grid gap-[var(--space-32)] md:grid-cols-2 items-start">
-        <header>
-          <div className="text-[12px] leading-[18px] tracking-[0.08em] uppercase text-[color:var(--color-text-muted)] mb-[var(--space-12)]">About</div>
-          <h2 className="text-[40px] leading-[48px] font-semibold tracking-[-0.02em] text-[color:var(--color-text)]">India's most trusted event registration partner</h2>
-        </header>
-        <div className="text-[16px] leading-[26px] text-[color:var(--color-text-muted)] space-y-[var(--space-16)] max-w-[74ch]">
-          <p>Since 2014, we’ve transformed how conferences handle registrations. From AIIMS medical conferences to IIT tech fests, our technology and team have powered hundreds of events across 25+ Indian cities.</p>
-          <p>We bring trained professionals, equipment, and a proven system that scales from 100 to 10,000+ attendees seamlessly.</p>
+    <section className="py-20 px-6 bg-white">
+      <div className="max-w-7xl mx-auto grid gap-12 md:grid-cols-2 items-start">
+        <div>
+          <h2 className="text-4xl md:text-6xl font-bold text-primary mb-4">India's most trusted event registration partner</h2>
+          <p className="text-gray-700 text-lg">Since 2014, we’ve transformed how conferences handle registrations. From AIIMS medical conferences to IIT tech fests, our technology and team have powered hundreds of events across 25+ Indian cities.</p>
+          <p className="text-gray-700 text-lg mt-4">We bring trained professionals, equipment, and a proven system that scales from 100 to 10,000+ attendees seamlessly.</p>
+        </div>
+        <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-gold/10 to-gold-light/10 p-8">
+          <div className="grid grid-cols-2 gap-6">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-gold">500+</div>
+              <div className="text-gray-600 mt-1">Events</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-gold">50K+</div>
+              <div className="text-gray-600 mt-1">Registrations</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-gold">25+</div>
+              <div className="text-gray-600 mt-1">Cities</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-gold">98%</div>
+              <div className="text-gray-600 mt-1">Retention</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -30,7 +30,7 @@ export default function HoloBackground() {
 
     const gridSize = 60
     const gridDiv = 60
-    const grid = new THREE.GridHelper(gridSize, gridDiv, new THREE.Color('#00B2FF'), new THREE.Color('#00FFD1'))
+    const grid = new THREE.GridHelper(gridSize, gridDiv, new THREE.Color('#219ebc'), new THREE.Color('#8ecae6'))
     ;(grid.material as THREE.Material).transparent = true
     ;(grid.material as THREE.Material).opacity = 0.15
     grid.position.y = -2
